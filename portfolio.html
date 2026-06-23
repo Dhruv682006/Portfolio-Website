@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Developer Portfolio</title>
+    <style>
+        /* --- Modern Design System Variables --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg-main: #0b0f19;           /* Premium deep midnight blue */
+            --bg-card: #151b2c;           /* Sleek dark slate for containers */
+            --accent-glow: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); /* Electric Blue-Purple */
+            --text-primary: #f8fafc;      /* Crisp white text */
+            --text-secondary: #94a3b8;    /* Soft elegant grey text */
+            --accent-cyan: #22d3ee;       /* Vibrant highlight cyan */
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Glassmorphic Sticky Navigation --- */
+        nav {
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo span {
+            background: var(--accent-glow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .btn-resume {
+            background: var(--accent-glow);
+            color: #ffffff !important;
+            padding: 0.55rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-resume:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* --- Stunning Hero / Intro Section --- */
+        .hero-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 7rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+
+        .hero-text {
+            flex: 1.2;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-text h1 span {
+            background: var(--accent-glow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 540px;
+        }
+
+        /* --- Failsafe Premium Profile Picture Frame --- */
+        .hero-avatar-wrapper {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-glow-ring {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            padding: 5px; /* Creates the perfect border line glow */
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.25);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .profile-glow-ring:hover {
+            transform: scale(1.04) rotate(1deg);
+        }
+
+        .profile-inner-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--bg-main);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* High-quality built-in vector fallback code */
+        .avatar-svg-fallback {
+            width: 70%;
+            height: 70%;
+            fill: #475569;
+            position: absolute;
+            z-index: 1;
+        }
+
+        /* Real user photograph style */
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            /* Gracefully keeps the SVG fallback visible if image file is missing */
+            alt: ""; 
+        }
+
+        /* --- Universal Section Structural Layouts --- */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-heading h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-heading p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        /* --- Dynamic Skills Badge Grid --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- Portfolio Project Work Showcase Grid --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .portfolio-card {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-visual-wrapper {
+            background: linear-gradient(45deg, #1e1b4b 0%, #0f172a 100%);
+            height: 190px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .portfolio-info {
+            padding: 2rem;
+        }
+
+        .portfolio-info h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .portfolio-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Safely Positioned Bottom Contact Component --- */
+        .contact-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            text-align: center;
+        }
+
+        .contact-card-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #151b2c 0%, #0e1320 100%);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .contact-links-row {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-pill {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.7rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .contact-pill:hover {
+            background: #ffffff;
+            color: var(--bg-main);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            padding: 3rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        /* --- Fully Fluid Adaptive Smartphone Rules --- */
+        @media (max-width: 968px) {
+            .hero-section {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 4rem 1.5rem;
+                gap: 3rem;
+            }
+            .hero-text h1 {
+                font-size: 2.6rem;
+            }
+            .profile-glow-ring {
+                width: 240px;
+                height: 240px;
+            }
+            .nav-links {
+                display: none; /* Keeps header clean on mobile devices */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation Bar Element -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Dev<span>Portfolio</span></a>
+            <ul class="nav-links">
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Samples</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <!-- Requirement from image_d40b81.png: Access your resume file link -->
+                <li><a href="resume.pdf" class="btn-resume" target="_blank">Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Top Hero Section (Introduction Area) -->
+    <header class="hero-section">
+        <div class="hero-text">
+            <h1>Hi, I'm <span>Your Name</span></h1>
+            <p>A detail-oriented frontend developer focused on writing semantic code structures, managing flawless element layouts, and building interactive web experiences.</p>
+            <a href="#projects" class="btn-resume" style="text-decoration: none; display: inline-block;">Explore Live Samples</a>
+        </div>
+        
+        <div class="hero-avatar-wrapper">
+            <div class="profile-glow-ring">
+                <div class="profile-inner-container">
+                    <!-- Elegant SVG Failsafe Icon. If your custom image is missing/broken, this beautiful vector displays perfectly! -->
+                    <svg class="avatar-svg-fallback" viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/>
+                    </svg>
+                    <!-- ACTION: Change "profile.jpg" below to your actual image file name whenever you want to load your real photo! -->
+                    <img src="profile.jpg" alt="" class="profile-img" onerror="this.style.opacity='0';">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Skills Architecture Segment -->
+    <section id="skills">
+        <div class="section-heading">
+            <h2>Technical Skills</h2>
+            <p>Core competencies and layout capabilities verified across basic tasks</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">🌐 Semantic HTML5</div>
+            <div class="skill-card">🎨 Advanced CSS3</div>
+            <div class="skill-card">📱 Responsive UIs</div>
+            <div class="skill-card">⚡ Flexbox & Grid</div>
+            <div class="skill-card">⚙️ Git & Versioning</div>
+        </div>
+    </section>
+
+    <!-- Sample Project Card Section Grid -->
+    <section id="projects">
+        <div class="section-heading">
+            <h2>Coded Project Samples</h2>
+            <p>A window into layout alignments, structured columns, and clear designs</p>
+        </div>
+        <div class="portfolio-grid">
+            
+            <!-- Project Card 1 -->
+            <div class="portfolio-card">
+                <div class="project-visual-wrapper">💎</div>
+                <div class="portfolio-info">
+                    <h3>High-Converting Landing Page</h3>
+                    <p>A modern marketing interface focusing on clear column grids, section dividing elements, and fluid padding spacing metrics.</p>
+                    <a href="#" class="project-link">View Repository &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="portfolio-card">
+                <div class="project-visual-wrapper">📂</div>
+                <div class="portfolio-info">
+                    <h3>Technical Documentation Base</h3>
+                    <p>An organized document portal featuring customized left-hand navigation layers and scrollable coding view boxes.</p>
+                    <a href="#" class="project-link">View Repository &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="portfolio-card">
+                <div class="project-visual-wrapper">✏️</div>
+                <div class="portfolio-info">
+                    <h3>Accessible Survey Application</h3>
+                    <p>A clean form asset incorporating input validation highlights, custom selection boxes, and balanced button margins.</p>
+                    <a href="#" class="project-link">View Repository &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Information Component (Safely isolated beneath top sections) -->
+    <section id="contact" class="contact-section">
+        <div class="contact-card-box">
+            <h2>Let's Open a Conversation</h2>
+            <p>I am actively open to engineering new layouts or jumping into developer roles. Connect with me directly below.</p>
+            <div class="contact-links-row">
+                <a href="mailto:your.email@example.com" class="contact-pill">✉️ Email Me</a>
+                <a href="https://linkedin.com" class="contact-pill" target="_blank">💼 LinkedIn</a>
+                <a href="https://github.com" class="contact-pill" target="_blank">💻 GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Segment -->
+    <footer>
+        <p>&copy; 2026 Your Name. Crafted beautifully with raw HTML & CSS.</p>
+    </footer>
+
+</body>
+</html>
+

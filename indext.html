@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Project Landing Page</title>
+    <style>
+        /* --- CSS Reset & Global Variables --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Crucial to prevent elements from overlapping */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #4f46e5;      /* Modern Indigo accent */
+            --primary-hover: #4338ca;      /* Button hover state */
+            --secondary-color: #0f172a;    /* Deep slate for text/headers */
+            --text-main: #334155;          /* Easy-to-read dark grey body text */
+            --text-light: #64748b;         /* Muted text for captions */
+            --bg-light: #f8fafc;           /* Soft background tone */
+            --bg-white: #ffffff;           /* Clean card/header background */
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- 1. Header Section --- */
+        header {
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-header {
+            background-color: var(--primary-color);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            transition: background-color 0.3s ease !important;
+        }
+
+        .btn-header:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* --- 2. Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* --- 3. Column Layout / Features Section --- */
+        .features {
+            padding: 6rem 2rem;
+            background-color: var(--bg-white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem;
+            color: var(--secondary-color);
+            margin-bottom: 3.5rem;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Arranges columns cleanly */
+            gap: 2.5rem;
+        }
+
+        .feature-box {
+            background-color: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.25rem;
+            display: inline-block;
+        }
+
+        .feature-box h3 {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-box p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* --- 4. Divided Two-Column Info Section --- */
+        .info-section {
+            padding: 6rem 2rem;
+            background-color: var(--bg-light);
+        }
+
+        .info-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-text h2 {
+            font-size: 2.25rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-text p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-visual {
+            flex: 1;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            height: 350px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- 5. Footer Section --- */
+        footer {
+            background-color: var(--secondary-color);
+            color: #94a3b8;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+        }
+
+        /* --- Responsive Viewport Rules (Prevents overlap on mobile) --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            .nav-links {
+                display: none; /* Simplifies header navigation for mobile screens */
+            }
+            .info-container {
+                flex-direction: column; /* Stacks column items vertically on smaller screens */
+                gap: 2.5rem;
+            }
+            .info-visual {
+                height: 250px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Segment -->
+    <header>
+        <nav class="nav-container">
+            <a href="#" class="logo">Launch<span>Pad</span></a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="btn-header">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Focus Area -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Create Beautiful Layouts with Purpose</h1>
+            <p>Mastering fundamental HTML and CSS allows you to organize information elegantly. Explore padding structure, alignments, and adaptive spacing below.</p>
+            <a href="#features" class="cta-btn">See Design Features</a>
+        </div>
+    </section>
+
+    <!-- Column Grid Feature Section -->
+    <section id="features" class="features">
+        <h2 class="section-title">Key Core Layout Mechanics</h2>
+        <div class="features-grid">
+            <div class="feature-box">
+                <span class="feature-icon">📐</span>
+                <h3>Perfect Alignments</h3>
+                <p>By using modern layout rules like CSS Grid and Flexbox, items stay mathematically balanced and correctly aligned on all viewports.</p>
+            </div>
+            <div class="feature-box">
+                <span class="feature-icon">📦</span>
+                <h3>Padding & Margin</h3>
+                <p>Propper utilization of the CSS box model keeps content breathable and gives sections room to prevent clutter.</p>
+            </div>
+            <div class="feature-box">
+                <span class="feature-icon">🎨</span>
+                <h3>Cohesive Color Palette</h3>
+                <p>A structured combination of text neutrals, background tints, and primary accent colors ensures instant brand identity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divided Showcase Section -->
+    <section id="about" class="info-section">
+        <div class="info-container">
+            <div class="info-text">
+                <h2>Careful CSS Structure Prevents Overlaps</h2>
+                <p>One of the main challenges highlighted in your project outline is preventing text or boxes from overlapping. By utilizing adaptive padding values and fluid media queries instead of rigid fixed widths, your page elements always flow smoothly.</p>
+                <p>Feel free to jump into the code and unleash your creativity by changing colors, swapping text, or styling your custom elements!</p>
+            </div>
+            <div class="info-visual">
+                [ Beautiful Visual Element ]
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Segment -->
+    <footer>
+        <div class="footer-container">
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Use</a></li>
+                <li><a href="#">Support Help</a></li>
+            </ul>
+            <p>&copy; 2026 LaunchPad Project. Hand-coded with pure HTML & CSS foundations.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
